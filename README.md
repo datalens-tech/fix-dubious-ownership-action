@@ -3,7 +3,7 @@
 [![CI](https://github.com/datalens-tech/fix-dubious-ownership-action/workflows/Check%20PR/badge.svg)](https://github.com/datalens-tech/fix-dubious-ownership-action/actions?query=workflow%3A%22%22Check+PR%22%22)
 [![GitHub Marketplace](https://img.shields.io/badge/Marketplace-fix-dubious-ownership-action-blue.svg)](https://github.com/marketplace/actions/fix-dubious-ownership-action)
 
-fix-dubious-ownership-action
+Action to solve "detected dubious ownership" [error](https://github.com/actions/runner-images/issues/6775)
 
 ## Usage
 
@@ -12,26 +12,20 @@ fix-dubious-ownership-action
 ```yaml
 jobs:
   fix-dubious-ownership-action:
-    permissions:
-      contents: read
-
     steps:
       - name: fix-dubious-ownership-action
-        id: fix-dubious-ownership-action
         uses: datalens-tech/fix-dubious-ownership-action@v1
 ```
 
 ### Action Inputs
 
-| Name          | Description  | Default |
-| ------------- | ------------ | ------- |
-| `placeholder` | Placeholder. |         |
+| Name               | Description             | Default                             |
+| ------------------ | ----------------------- | ----------------------------------- |
+| `github_repo_name` | GitHub Repository Name. | ${{ github.event.repository.name }} |
 
 ### Action Outputs
 
-| Name          | Description  |
-| ------------- | ------------ |
-| `placeholder` | Placeholder. |
+None
 
 ## Development
 

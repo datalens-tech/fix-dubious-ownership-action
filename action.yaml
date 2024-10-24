@@ -2,24 +2,20 @@ name: "fix-dubious-ownership-action"
 description: "fix-dubious-ownership-action"
 
 inputs:
-  placeholder:
-    description: "Placeholder input to be replaced by real inputs"
-    required: true
-    default: "placeholder"
-
-outputs:
-  placeholder:
-    description: "Placeholder output to be replaced by real outputs"
-    value: ${{steps.placeholder.outputs.placeholder }}
+  github_repo_name:
+    description: "GitHub repository name"
+    default: ${{ github.event.repository.name }}
 
 runs:
   using: "composite"
   steps:
-    - name: Placeholder
-      id: placeholder
+    - name: Fix dubious ownership
       shell: bash
       run: |
-        echo "::set-output name=placeholder::${{ inputs.placeholder }}"
+        git config --global --add safe.directory .
+        git config --global --add safe.directory "/__w/${REPOSITORY_NAME}/${REPOSITORY_NAME}"
+      env:
+        REPOSITORY_NAME: ${{ inputs.github_repo_name }}
 
 # https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#branding
 branding:
